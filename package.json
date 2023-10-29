@@ -1,16 +1,25 @@
 {
-  "name": "csc577---pending",
-  "version": "0.0.0",
-  "private": true,
+  "name": "ejs-dev",
+  "version": "1.0.0",
+  "description": "",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "build-tail": "NODE_ENV=production tailwindcss build -i styles/tailwindcss.css -o assets/styles.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "jade": "~1.11.0",
-    "morgan": "~1.9.1"
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "mongodb": "^6.2.0",
+    "nodemon": "^3.0.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.3.7",
+    "postcss": "^8.3.9",
+    "tailwindcss": "^2.2.16"
   }
 }
