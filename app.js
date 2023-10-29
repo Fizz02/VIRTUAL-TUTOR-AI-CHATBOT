@@ -20,9 +20,33 @@ app.get('/about', function(req, res) {
   res.render('pages/about');
 });
 
-app.get('/algebra-calculator', function(req,res){
-  res.render('pages/algebra-calculator');
-})
+app.get('/general', function(req,res){
+  res.render('pages/algebra_calculator');
+});
+
+app.get('/coord', function(req,res){
+  res.render('pages/coordinate');
+});
+
+app.get('/manage', function(req,res){
+  res.render('pages/data_management');
+});
+
+app.get('/measurement', function(req,res){
+  res.render('pages/measurement');
+});
+
+app.get('/money', function(req,res){
+  res.render('pages/money');
+});
+
+app.get('/space', function(req,res){
+  res.render('pages/space');
+});
+
+app.get('/time', function(req,res){
+  res.render('pages/time');
+});
 
 app.listen(8080);
 console.log('Server is listening on port 8080');
