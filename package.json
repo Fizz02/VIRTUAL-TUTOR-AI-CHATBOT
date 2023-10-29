@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "build-tail": "NODE_ENV=production tailwindcss build -i styles/tailwindcss.css -o assets/styles.css",
+    "build-tail": "NODE_ENV=production tailwindcss build -i styles/tailwindcss.css -o assets/css/styles.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
