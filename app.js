@@ -24,6 +24,10 @@ app.get('/general', function(req,res){
   res.render('pages/algebra_calculator');
 });
 
+app.get('/number', function(req,res){
+  res.render('pages/nomborbulat');
+});
+
 app.get('/coord', function(req,res){
   res.render('pages/coordinate');
 });

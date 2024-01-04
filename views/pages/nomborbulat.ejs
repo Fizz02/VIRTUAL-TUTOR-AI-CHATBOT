@@ -1,0 +1,69 @@
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+
+<header>
+    <%- include('../partials/header') %>
+</header>
+
+<main class="bg-gray-200 flex justify-center items-center h-screen">
+    <div class="bg-white p-6 rounded shadow-lg">
+        <h1 class="text-2xl mb-4">Number to Words Converter</h1>
+        <input type="number" id="numberInput" class="p-2 mb-4 w-80" placeholder="Enter a number between 0 and 1000">
+        <button class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600" onclick="convertNumber()">Convert</button>
+        <p id="result" class="mt-4 text-xl font-bold"></p>
+    </div>
+
+    <script>
+        function convertNumber() {
+            const number = parseInt(document.getElementById('numberInput').value, 10);
+
+            if (isNaN(number) || number < 0 || number > 1000) {
+                document.getElementById('result').innerText = 'Sila masukkan nombor yang sah antara 0 dan 1000.';
+                return;
+            }
+
+            const words = numberToWords(number);
+            document.getElementById('result').innerText = words;
+        }
+
+        function numberToWords(number) {
+            const units = ['', 'Satu', 'Dua', 'Tiga', 'Empat', 'Lima', 'Enam', 'Tujuh', 'Lapan', 'Sembilan', 'Sepuluh',
+                'Sebelas', 'Dua Belas', 'Tiga Belas', 'Empat Belas', 'Lima Belas', 'Enam Belas', 'Tujuh Belas', 'Lapan Belas', 'Sembilan Belas'
+            ];
+            const tens = ['', 'Sepuluh', 'Dua Puluh', 'Tiga Puluh', 'Empat Puluh', 'Lima Puluh', 'Enam Puluh', 'Tujuh Puluh', 'Lapan Puluh', 'Sembilan Puluh'];
+
+            if (number === 0) {
+                return 'kosong';
+            }
+
+            let words = '';
+
+            if (number >= 1000) {
+                words += units[Math.floor(number / 1000)] + ' Ribu ';
+                number %= 1000;
+            }
+
+            if (number >= 100) {
+                words += units[Math.floor(number / 100)] + ' Ratus ';
+                number %= 100;
+            }
+
+            if (number >= 20) {
+                words += tens[Math.floor(number / 10)] + ' ';
+                number %= 10;
+            }
+
+            if (number > 0) {
+                words += units[number];
+            }
+
+            return words.trim();
+        }
+    </script>
+</main>
+<footer>
+    <%- include('../partials/footer') %>
+</footer>
+</html>
