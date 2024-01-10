@@ -1,69 +1,144 @@
 <html lang="en">
+
 <head>
     <%- include('../partials/head') %>
+        <script src="https://cdn.jsdelivr.net/npm/vector-js/dist/vector.min.js"></script>
+        <style>
+            .bg {
+                background-image: url('../assets/images/background.jpg');
+                background-position: center;
+                background-size: cover;
+                height: 100%;
+            }
+        </style>
 </head>
-
 <header>
     <%- include('../partials/header') %>
 </header>
-
-<main class="bg-gray-200 flex justify-center items-center h-screen">
-    <div class="bg-white p-6 rounded shadow-lg">
-        <h1 class="text-2xl mb-4">Number to Words Converter</h1>
-        <input type="number" id="numberInput" class="p-2 mb-4 w-80" placeholder="Enter a number between 0 and 1000">
+<main class="bg gap-4 bg-gray-200 flex justify-center items-center h-screen">
+    <div class="bg-opacity-70 bg-white p-6 rounded shadow-lg">
+        <h1 class="text-2xl mb-4">Nombor kepada Kata</h1>
+        <input type="number" id="numberInput" class="p-2 mb-4 w-80" placeholder="Enter a number between 0 and 10000">
         <button class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600" onclick="convertNumber()">Convert</button>
         <p id="result" class="mt-4 text-xl font-bold"></p>
     </div>
+    <div class="bg-opacity-70 bg-white p-6 rounded shadow-lg">
+        <h1 class="text-2xl mb-4">Perbandingan Nombor</h1>
+        <input type="number" id="input1" class="p-2 mb-4" placeholder="Enter first number">
+        <input type="number" id="input2" class="p-2 mb-4" placeholder="Enter second number">
+        <button class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600" onclick="compareNumbers()">Compare</button>
+        <p id="resultcmp" class="mt-4 text-xl font-bold"></p>
+    </div>
+    <div class="bg-opacity-70 bg-white p-6 rounded shadow-lg">
+        <h1 class="text-2xl mb-4">Bundaran Nombor</h1>
+        <input type="number" id="inputNumber" class="p-2 mb-4" placeholder="Enter a number">
+        <select id="roundingOption" class="p-2 mb-4">
+            <option value="10">Puluh</option>
+            <option value="100">Ratus</option>
+            <option value="1000">Ribu</option>
+        </select>
+        <button class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600" onclick="roundNumber()">Round</button>
+        <p id="resultr" class="mt-4 text-xl font-bold"></p>
+    </div>
 
     <script>
-        function convertNumber() {
-            const number = parseInt(document.getElementById('numberInput').value, 10);
+        class n2w {
+            constructor(number) {
+                this.number = number;
+                this.numberToWords = function () {
+                    const units = ['', 'satu', 'dua', 'tiga', 'empat', 'lima', 'enam', 'tujuh', 'lapan', 'sembilan', 'sepuluh',
+                        'sebelas', 'dua belas', 'tiga belas', 'empat belas', 'lima belas', 'enam belas', 'tujuh belas', 'lapan belas', 'sembilan belas'
+                    ];
+                    const tens = ['', 'sepuluh', 'dua puluh', 'tiga puluh', 'empat puluh', 'lima puluh', 'enam puluh', 'tujuh puluh', 'lapan puluh', 'sembilan puluh'];
 
-            if (isNaN(number) || number < 0 || number > 1000) {
-                document.getElementById('result').innerText = 'Sila masukkan nombor yang sah antara 0 dan 1000.';
+                    if (number === 0) {
+                        return 'kosong';
+                    }
+
+                    let words = '';
+
+                    if (number >= 10000) {
+                        words += units[Math.floor(number / 10000)] + ' puluh ribu ';
+                        number %= 10000;
+                    }
+
+                    if (number >= 1000) {
+                        words += units[Math.floor(number / 1000)] + ' ribu ';
+                        number %= 1000;
+                    }
+
+                    if (number >= 100) {
+                        words += units[Math.floor(number / 100)] + ' ratus ';
+                        number %= 100;
+                    }
+
+                    if (number >= 20) {
+                        words += tens[Math.floor(number / 10)] + ' ';
+                        number %= 10;
+                    }
+
+                    if (number > 0) {
+                        words += units[number];
+                    }
+
+                    return words.trim();
+                }
+            }
+        }
+        function convertNumber() {
+            const numberInput = parseInt(document.getElementById('numberInput').value, 10);
+            const a = new n2w(numberInput);
+            if (isNaN(numberInput) || numberInput < 0 || numberInput > 10000) {
+                document.getElementById('result').innerText = 'Sila masukkan nombor yang sah antara 0 dan 10000.';
                 return;
             }
-
-            const words = numberToWords(number);
+            const words = a.numberToWords();
             document.getElementById('result').innerText = words;
         }
 
-        function numberToWords(number) {
-            const units = ['', 'Satu', 'Dua', 'Tiga', 'Empat', 'Lima', 'Enam', 'Tujuh', 'Lapan', 'Sembilan', 'Sepuluh',
-                'Sebelas', 'Dua Belas', 'Tiga Belas', 'Empat Belas', 'Lima Belas', 'Enam Belas', 'Tujuh Belas', 'Lapan Belas', 'Sembilan Belas'
-            ];
-            const tens = ['', 'Sepuluh', 'Dua Puluh', 'Tiga Puluh', 'Empat Puluh', 'Lima Puluh', 'Enam Puluh', 'Tujuh Puluh', 'Lapan Puluh', 'Sembilan Puluh'];
+        function compareNumbers() {
+            const num1 = parseFloat(document.getElementById('input1').value);
+            const num2 = parseFloat(document.getElementById('input2').value);
 
-            if (number === 0) {
-                return 'kosong';
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById('resultcmp').innerText = 'Please enter valid numbers.';
+                return;
             }
 
-            let words = '';
-
-            if (number >= 1000) {
-                words += units[Math.floor(number / 1000)] + ' Ribu ';
-                number %= 1000;
+            if (num1 === num2) {
+                document.getElementById('resultcmp').innerText = `${num1} = ${num2}`;
+            } else if (num1 < num2) {
+                document.getElementById('resultcmp').innerText = `${num1} < ${num2}`;
+            } else {
+                document.getElementById('resultcmp').innerText = `${num1} > ${num2}`;
+            }
+        }
+        function roundNumber() {
+            let Bundar = ""
+            const number = parseInt(document.getElementById('inputNumber').value);
+            const roundingOption = parseInt(document.getElementById('roundingOption').value);
+            if (roundingOption == 10) {
+                Bundar = "Puluh";
+            } else if (roundingOption == 100) {
+                Bundar = "Ratus";
+            } else {
+                Bundar = "Ribu";
             }
 
-            if (number >= 100) {
-                words += units[Math.floor(number / 100)] + ' Ratus ';
-                number %= 100;
+
+            if (isNaN(number)) {
+                document.getElementById('resultr').innerText = 'Please enter a valid number.';
+                return;
             }
 
-            if (number >= 20) {
-                words += tens[Math.floor(number / 10)] + ' ';
-                number %= 10;
-            }
-
-            if (number > 0) {
-                words += units[number];
-            }
-
-            return words.trim();
+            const roundedNumber = Math.round(number / roundingOption) * roundingOption;
+            document.getElementById('resultr').innerText = `Bundar kepada ${Bundar} yang terdekat : ${roundedNumber}`;
         }
     </script>
 </main>
+
 <footer>
     <%- include('../partials/footer') %>
 </footer>
+
 </html>

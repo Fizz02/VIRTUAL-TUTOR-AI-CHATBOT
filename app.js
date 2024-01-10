@@ -20,6 +20,10 @@ app.get('/about', function(req, res) {
   res.render('pages/about');
 });
 
+app.get('/calc', function(req, res) {
+  res.render('pages/calculator');
+});
+
 app.get('/general', function(req,res){
   res.render('pages/algebra_calculator');
 });

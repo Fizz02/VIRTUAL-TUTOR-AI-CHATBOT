@@ -1,100 +1,109 @@
-<!DOCTYPE html>
+
 <html lang="en">
+
 <head>
   <%- include('../partials/head') %>
-  <style>
-    .card {
-      transition: background-color 0.4s, color 0.4s;
-    }
+    <style>
+      .card {
+        transition: background-color 0.4s, color 0.4s;
+      }
 
-    .card-hovered {
-      background-color: #444; /* Change this to your desired hover background color */
-      color: #fff; /* Change this to your desired hover text color */
-    }
-  </style>
+      .card-hovered {
+        background-color: #444;
+        /* Change this to your desired hover background color */
+        color: #fff;
+        /* Change this to your desired hover text color */
+      }
+
+      .bg {
+        background-image: url('../assets/images/background.jpg');
+        background-position: center;
+        background-size: cover;
+        height: 100%;
+      }
+    </style>
 </head>
-<body class="container">
-  <header>
-    <%- include('../partials/header') %>
-  </header>
-  <main>
-    <section class="text-gray-600 body-font">
-      <div class="container px-5 py-24 mx-auto">
-        <div class="flex flex-wrap w-full mb-20">
-          <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
-          </div>
-          <div class="group flex flex-wrap -m-4">
-            <div class="xl:w-1/4 md:w-1/2 p-4">
-              <div class="bg-gray-100 p-6 rounded-lg card">
-                <a href="/general " >
-                  <img class="h-40 rounded w-full object-cover object-center mb-6 " src="/assets/images/general-calculator.jpg" alt="content">
-                </a>
-                <h2 class="text-lg  font-medium title-font mb-4">General</h2>
-                <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
-              </div>
-            </div>
-            <div class="xl:w-1/4 md:w-1/2 p-4">
-              <div class="bg-gray-100 p-6 rounded-lg card">
-                <a href="/money">
-                  <img class="h-40 rounded w-full object-cover object-center mb-6" src="/assets/images/money.png" alt="content">
-                </a>
-                <h2 class="text-lgfont-medium title-font mb-4">Money</h2>
-                <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
-              </div>
-            </div>
-            <div class="xl:w-1/4 md:w-1/2 p-4">
-              <div class="bg-gray-100 p-6 rounded-lg card">
-                <a href="/time">
-                  <img class="h-40 rounded w-full object-cover object-center mb-6" src="/assets/images/time.png" alt="content">
-                </a>
-                <h2 class="text-lgfont-medium title-font mb-4">Time</h2>
-                <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
-              </div>
-            </div>
-            <div class="xl:w-1/4 md:w-1/2 p-4">
-              <div class="bg-gray-100 p-6 rounded-lg card">
-                <a href="/measurement">
-                  <img class="h-40 rounded w-full object-cover object-center mb-6" src="/assets/images/measurement.jpeg" alt="content">
-                </a>
-                <h2 class="text-lg font-medium title-font mb-4">Measurement</h2>
-                <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
-              </div>
-            </div>
-            <div class="xl:w-1/4 md:w-1/2 p-4">
-              <div class="bg-gray-100 p-6 rounded-lg card">
-                <a href="/coord">
-                  <img class="h-40 rounded w-full object-cover object-center mb-6" src="/assets/images/coordinate.png" alt="content">
-                </a>
-                <h2 class="text-lg  font-medium title-font mb-4">Coordinate</h2>
-                <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
-              </div>
-            </div>
-            <div class="xl:w-1/4 md:w-1/2 p-4">
-              <div class="bg-gray-100 p-6 rounded-lg card">
-                <a href="/space">
-                  <img class="h-40 rounded w-full object-cover object-center mb-6" src="/assets/images/space.jpeg" alt="content">
-                </a>
-                <h2 class="text-lg  font-medium title-font mb-4">Space</h2>
-                <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
-              </div>
-            </div>
-            <div class="xl:w-1/4 md:w-1/2 p-4">
-              <div class="bg-gray-100 p-6 rounded-lg card">
-                <a href="/manage">
-                  <img class="h-40 rounded w-full object-cover object-center mb-6" src="/assets/images/data-management.png" alt="content">
-                </a>
-                <h2 class="text-lg font-medium title-font mb-4">Data Management</h2>
-                <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+<header>
+  <%- include('../partials/header') %>
+</header>
+<main class="bg gap-4 bg-gray-200 flex justify-center items-center h-screen">
+  <div class="xl:w-1/4 md:w-1/2 p-4">
+    <a href="/calc ">
+      <div class="bg-gray-100 p-6 rounded-lg card bg-opacity-70">
+        <img class="h-40 rounded w-full object-cover object-center mb-6 " src="/assets/images/general-calculator.jpg"
+          alt="content">
+        <h2 class="text-lg  font-medium title-font mb-4">General</h2>
+        <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery
+          hexagon disrupt edison bulbche.</p>
       </div>
-    </section>
-  </main>
-  <footer>
-    <%- include('../partials/footer') %>
-  </footer>
+    </a>
+  </div>
+  <div class="xl:w-1/4 md:w-1/2 p-4">
+    <a href="/number">
+      <div class="bg-gray-100 p-6 rounded-lg card bg-opacity-70">
+        <img class="h-40 rounded w-full object-cover object-center mb-6" src="/assets/images/number.jpg" alt="content">
+        <h2 class="text-lgfont-medium title-font mb-4">Money</h2>
+        <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery
+          hexagon disrupt edison bulbche.</p>
+      </div>
+    </a>
+  </div>
+  <!--<div class="xl:w-1/4 md:w-1/2 p-4">
+            <div class="bg-gray-100 p-6 rounded-lg card">
+              <a href="/time">
+                <img class="h-40 rounded w-full object-cover object-center mb-6" src="/assets/images/time.png"
+                  alt="content">
+              </a>
+              <h2 class="text-lgfont-medium title-font mb-4">Time</h2>
+              <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery
+                hexagon disrupt edison bulbche.</p>
+            </div>
+          </div>
+          <div class="xl:w-1/4 md:w-1/2 p-4">
+            <div class="bg-gray-100 p-6 rounded-lg card">
+              <a href="/measurement">
+                <img class="h-40 rounded w-full object-cover object-center mb-6" src="/assets/images/measurement.jpeg"
+                  alt="content">
+              </a>
+              <h2 class="text-lg font-medium title-font mb-4">Measurement</h2>
+              <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery
+                hexagon disrupt edison bulbche.</p>
+            </div>
+          </div>
+          <div class="xl:w-1/4 md:w-1/2 p-4">
+            <div class="bg-gray-100 p-6 rounded-lg card">
+              <a href="/coord">
+                <img class="h-40 rounded w-full object-cover object-center mb-6" src="/assets/images/coordinate.png"
+                  alt="content">
+              </a>
+              <h2 class="text-lg  font-medium title-font mb-4">Coordinate</h2>
+              <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery
+                hexagon disrupt edison bulbche.</p>
+            </div>
+          </div>
+          <div class="xl:w-1/4 md:w-1/2 p-4">
+            <div class="bg-gray-100 p-6 rounded-lg card">
+              <a href="/space">
+                <img class="h-40 rounded w-full object-cover object-center mb-6" src="/assets/images/space.jpeg"
+                  alt="content">
+              </a>
+              <h2 class="text-lg  font-medium title-font mb-4">Space</h2>
+              <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery
+                hexagon disrupt edison bulbche.</p>
+            </div>
+          </div>
+          <div class="xl:w-1/4 md:w-1/2 p-4">
+            <div class="bg-gray-100 p-6 rounded-lg card">
+              <a href="/manage">
+                <img class="h-40 rounded w-full object-cover object-center mb-6"
+                  src="/assets/images/data-management.png" alt="content">
+              </a>
+              <h2 class="text-lg font-medium title-font mb-4">Data Management</h2>
+              <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery
+                hexagon disrupt edison bulbche.</p>
+            </div>
+          </div>-->
+
   <script>
     const cards = document.querySelectorAll('.card');
 
@@ -114,5 +123,10 @@
       });
     });
   </script>
-</body>
+</main>
+<footer>
+  <%- include('../partials/footer') %>
+</footer>
+
+
 </html>
