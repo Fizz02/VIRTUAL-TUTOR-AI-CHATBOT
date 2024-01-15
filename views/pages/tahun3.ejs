@@ -1,0 +1,80 @@
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+        <script src="https://cdn.jsdelivr.net/npm/vector-js/dist/vector.min.js"></script>
+        <style>
+            .bg {
+                background-image: url('../assets/images/background.jpg');
+                background-position: center;
+                background-size: cover;
+                height: 100%;
+            }
+        </style>
+</head>
+<header>
+    <%- include('../partials/header') %>
+</header>
+<main class="bg gap-4 bg-gray-200 flex justify-center items-center h-screen">
+    <div>
+        <div class="bg-white p-6 rounded shadow-lg bg-opacity-70">
+            <div class="grid grid-cols-4 gap-4">
+                <input type="text" id="display" class="col-span-4 p-3 text-right rounded" readonly>
+                <button class="col-span-3 p-3 bg-gray-300 rounded hover:bg-gray-400" onclick="calculator.clearDisplay()">AC</button>
+                <button class="p-3 bg-gray-300 rounded hover:bg-gray-400" onclick="calculator.deleteChar()">DEL</button>
+                <button class="p-3 bg-gray-100 rounded hover:bg-gray-200" onclick="calculator.addToDisplay('7')">7</button>
+                <button class="p-3 bg-gray-100 rounded hover:bg-gray-200" onclick="calculator.addToDisplay('8')">8</button>
+                <button class="p-3 bg-gray-100 rounded hover:bg-gray-200" onclick="calculator.addToDisplay('9')">9</button>
+                <button class="p-3 bg-yellow-300 rounded hover:bg-yellow-400" onclick="calculator.addToDisplay('/')">/</button>
+                <button class="p-3 bg-gray-100 rounded hover:bg-gray-200" onclick="calculator.addToDisplay('4')">4</button>
+                <button class="p-3 bg-gray-100 rounded hover:bg-gray-200" onclick="calculator.addToDisplay('5')">5</button>
+                <button class="p-3 bg-gray-100 rounded hover:bg-gray-200" onclick="calculator.addToDisplay('6')">6</button>
+                <button class="p-3 bg-yellow-300 rounded hover:bg-yellow-400" onclick="calculator.addToDisplay('*')">*</button>
+                <button class="p-3 bg-gray-100 rounded hover:bg-gray-200" onclick="calculator.addToDisplay('1')">1</button>
+                <button class="p-3 bg-gray-100 rounded hover:bg-gray-200" onclick="calculator.addToDisplay('2')">2</button>
+                <button class="p-3 bg-gray-100 rounded hover:bg-gray-200" onclick="calculator.addToDisplay('3')">3</button>
+                <button class="p-3 bg-yellow-300 rounded hover:bg-yellow-400" onclick="calculator.addToDisplay('-')">-</button>
+                <button class="p-3 bg-gray-100 rounded hover:bg-gray-200" onclick="calculator.addToDisplay('0')">0</button>
+                <button class="p-3 bg-gray-100 rounded hover:bg-gray-200" onclick="calculator.addToDisplay('.')">.</button>
+                <button class="p-3 bg-yellow-300 rounded hover:bg-yellow-400" onclick="calculator.calculate()">=</button>
+                <button class="p-3 bg-yellow-300 rounded hover:bg-yellow-400" onclick="calculator.addToDisplay('+')">+</button>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="bg-opacity-70 bg-white p-6 rounded shadow-lg">
+            <h1 class="text-2xl mb-4">Nombor kepada Kata</h1>
+            <input type="number" id="numberInput" class="p-2 mb-4 w-80"
+                placeholder="Enter a number between 0 and 10000">
+            <button class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                onclick="convertNumber()">Convert</button>
+            <p id="result" class="mt-4 text-xl font-bold"></p>
+        </div>
+        <div class="bg-opacity-70 bg-white p-6 rounded shadow-lg">
+            <h1 class="text-2xl mb-4">Perbandingan Nombor</h1>
+            <input type="number" id="input1" class="p-2 mb-4" placeholder="Enter first number">
+            <input type="number" id="input2" class="p-2 mb-4" placeholder="Enter second number">
+            <button class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                onclick="compareNumbers()">Compare</button>
+            <p id="resultcmp" class="mt-4 text-xl font-bold"></p>
+        </div>
+        <div class="bg-opacity-70 bg-white p-6 rounded shadow-lg">
+            <h1 class="text-2xl mb-4">Bundaran Nombor</h1>
+            <input type="number" id="inputNumber" class="p-2 mb-4" placeholder="Enter a number">
+            <select id="roundingOption" class="p-2 mb-4">
+                <option value="10">Puluh</option>
+                <option value="100">Ratus</option>
+                <option value="1000">Ribu</option>
+            </select>
+            <button class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600" onclick="roundNumber()">Round</button>
+            <p id="resultr" class="mt-4 text-xl font-bold"></p>
+        </div>
+    </div>
+    <script src="../../assets/script/tahun3.js"></script>
+</main>
+
+<footer>
+    <%- include('../partials/footer') %>
+</footer>
+
+</html>

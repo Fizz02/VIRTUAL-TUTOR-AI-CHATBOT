@@ -25,12 +25,10 @@
             <button class="p-3 bg-gray-100 rounded hover:bg-gray-200" onclick="calculator.addToDisplay('8')">8</button>
             <button class="p-3 bg-gray-100 rounded hover:bg-gray-200" onclick="calculator.addToDisplay('9')">9</button>
             <button class="p-3 bg-yellow-300 rounded hover:bg-yellow-400" onclick="calculator.addToDisplay('/')">/</button>
-
             <button class="p-3 bg-gray-100 rounded hover:bg-gray-200" onclick="calculator.addToDisplay('4')">4</button>
             <button class="p-3 bg-gray-100 rounded hover:bg-gray-200" onclick="calculator.addToDisplay('5')">5</button>
             <button class="p-3 bg-gray-100 rounded hover:bg-gray-200" onclick="calculator.addToDisplay('6')">6</button>
             <button class="p-3 bg-yellow-300 rounded hover:bg-yellow-400" onclick="calculator.addToDisplay('*')">*</button>
-
             <button class="p-3 bg-gray-100 rounded hover:bg-gray-200" onclick="calculator.addToDisplay('1')">1</button>
             <button class="p-3 bg-gray-100 rounded hover:bg-gray-200" onclick="calculator.addToDisplay('2')">2</button>
             <button class="p-3 bg-gray-100 rounded hover:bg-gray-200" onclick="calculator.addToDisplay('3')">3</button>
@@ -41,39 +39,25 @@
             <button class="p-3 bg-yellow-300 rounded hover:bg-yellow-400" onclick="calculator.addToDisplay('+')">+</button>
         </div>
     </div>
+    <div class="bg-white p-6 rounded shadow-lg bg-opacity-70">
+        <h2 class="text-xl font-bold mb-4">Calculator (Up to 1000)</h2>
+        <div class="grid grid-cols-4 gap-4">
+            <input type="text" id="display2" class="col-span-4 p-3 text-right rounded" readonly>
+            <!-- Modify buttons to include +, -, *, / and limit numbers to 0-1000 -->
+            <!-- ... (similar to your existing buttons) -->
+        </div>
+    </div>
 
-    <script>
-        class Calculator {
-            constructor() {
-                this.displayValue = '';
-            }
-
-            addToDisplay(value) {
-                this.displayValue += value;
-                document.getElementById('display').value = this.displayValue;
-            }
-
-            clearDisplay() {
-                this.displayValue = '';
-                document.getElementById('display').value = this.displayValue;
-            }
-
-            deleteChar() {
-                this.displayValue = this.displayValue.slice(0, -1);
-                document.getElementById('display').value = this.displayValue;
-            }
-
-            calculate() {
-                try {
-                    this.displayValue = eval(this.displayValue);
-                    document.getElementById('display').value = this.displayValue;
-                } catch (error) {
-                    document.getElementById('display').value = 'Error';
-                }
-            }
-        }
-        const calculator = new Calculator();
-    </script>
+    <!-- Calculator 3 (Up to 10000) -->
+    <div class="bg-white p-6 rounded shadow-lg bg-opacity-70">
+        <h2 class="text-xl font-bold mb-4">Calculator (Up to 10000)</h2>
+        <div class="grid grid-cols-4 gap-4">
+            <input type="text" id="display3" class="col-span-4 p-3 text-right rounded" readonly>
+            <!-- Modify buttons to include +, -, *, / and limit numbers to 0-10000 -->
+            <!-- ... (similar to your existing buttons) -->
+        </div>
+    </div>
+    <script src="../../assets/script/calculator.js"></script>
 </main>
 
 <footer>

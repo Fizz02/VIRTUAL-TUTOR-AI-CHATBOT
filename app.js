@@ -12,6 +12,9 @@ class PageRouter {
   setupRoutes() {
     app.get('/', this.renderPage.bind(this, 'index'));
     app.get('/about', this.renderPage.bind(this, 'about'));
+    app.get('/tahun-1', this.renderPage.bind(this, 'tahun1'));
+    app.get('/tahun-2', this.renderPage.bind(this, 'tahun2'));
+    app.get('/tahun-3', this.renderPage.bind(this, 'tahun3'));
     app.get('/calc', this.renderPage.bind(this, 'calculator'));
     app.get('/general', this.renderPage.bind(this, 'algebra_calculator'));
     app.get('/number', this.renderPage.bind(this, 'nomborbulat'));

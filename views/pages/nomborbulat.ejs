@@ -46,9 +46,11 @@
             constructor() {
                 this.number = 0;
             }
+
             setNumber(number) {
                 this.number = number;
             }
+
             numberToWords() {
                 const units = ['', 'satu', 'dua', 'tiga', 'empat', 'lima', 'enam', 'tujuh', 'lapan', 'sembilan', 'sepuluh',
                     'sebelas', 'dua belas', 'tiga belas', 'empat belas', 'lima belas', 'enam belas', 'tujuh belas', 'lapan belas', 'sembilan belas'
@@ -96,7 +98,6 @@
         class NumberRounder {
             roundNumber(number, roundingOption) {
                 let Bundar = "";
-
                 if (roundingOption == 10) {
                     Bundar = "Puluh";
                 } else if (roundingOption == 100) {
@@ -104,24 +105,22 @@
                 } else {
                     Bundar = "Ribu";
                 }
-
                 const roundedNumber = Math.round(number / roundingOption) * roundingOption;
                 return `Bundar kepada ${Bundar} yang terdekat : ${roundedNumber}`;
             }
         }
+
         const numberConverter = new NumberConverter();
         const numberComparator = new NumberComparator();
         const numberRounder = new NumberRounder();
-
+        
         function convertNumber() {
             const numberInput = parseInt(document.getElementById('numberInput').value, 10);
             numberConverter.setNumber(numberInput);
-
             if (isNaN(numberInput) || numberInput < 0 || numberInput > 10000) {
                 document.getElementById('result').innerText = 'Sila masukkan nombor yang sah antara 0 dan 10000.';
                 return;
             }
-
             const words = numberConverter.numberToWords();
             document.getElementById('result').innerText = words;
         }
@@ -129,25 +128,21 @@
         function compareNumbers() {
             const num1 = parseFloat(document.getElementById('input1').value);
             const num2 = parseFloat(document.getElementById('input2').value);
-
             if (isNaN(num1) || isNaN(num2)) {
                 document.getElementById('resultcmp').innerText = 'Please enter valid numbers.';
                 return;
             }
-
             const comparisonResult = numberComparator.compareNumbers(num1, num2);
             document.getElementById('resultcmp').innerText = comparisonResult;
         }
-
+        
         function roundNumber() {
             const number = parseInt(document.getElementById('inputNumber').value);
             const roundingOption = parseInt(document.getElementById('roundingOption').value);
-
             if (isNaN(number)) {
                 document.getElementById('resultr').innerText = 'Please enter a valid number.';
                 return;
             }
-
             const roundingResult = numberRounder.roundNumber(number, roundingOption);
             document.getElementById('resultr').innerText = roundingResult;
         }
