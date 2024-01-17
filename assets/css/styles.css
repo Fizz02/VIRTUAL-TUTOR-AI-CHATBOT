@@ -78,6 +78,12 @@ Grouping content
 1. Add the correct height in Firefox.
 2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
 */
+.bg {
+  background-image: url('assets/images/background.jpg');
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+}
 
 hr {
   height: 0;

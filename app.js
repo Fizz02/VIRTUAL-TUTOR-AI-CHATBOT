@@ -1,52 +1,41 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 const path = require('path');
+class PageRouter {
+  constructor() {
+    app.set('view engine', 'ejs');
+    app.set('views', path.join(__dirname, 'views'));
+    app.use('/assets', express.static('assets'));
+    this.setupRoutes();
+  }
 
-// set the view engine to ejs
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+  setupRoutes() {
+    app.get('/', this.renderPage.bind(this, 'index'));
+    app.get('/about', this.renderPage.bind(this, 'about'));
+    app.get('/tahun-1', this.renderPage.bind(this, 'tahun1'));
+    app.get('/tahun-2', this.renderPage.bind(this, 'tahun2'));
+    app.get('/tahun-3', this.renderPage.bind(this, 'tahun3'));
+    app.get('/calc', this.renderPage.bind(this, 'calculator'));
+    app.get('/general', this.renderPage.bind(this, 'algebra_calculator'));
+    app.get('/number', this.renderPage.bind(this, 'nomborbulat'));
+    app.get('/coord', this.renderPage.bind(this, 'coordinate'));
+    app.get('/manage', this.renderPage.bind(this, 'data_management'));
+    app.get('/measurement', this.renderPage.bind(this, 'measurement'));
+    app.get('/money', this.renderPage.bind(this, 'money'));
+    app.get('/space', this.renderPage.bind(this, 'space'));
+    app.get('/time', this.renderPage.bind(this, 'time'));
+  }
 
-// use res.render to load up an ejs view file
+  renderPage(pageName, req, res) {
+    res.render(`pages/${pageName}`);
+  }
 
-app.use('/assets', express.static('assets'));
-// index page
-app.get('/', function(req, res) {
+  startServer(port) {
+    app.listen(port, () => {
+      console.log(`Server is listening on port ${port}`);
+    });
+  }
+}
 
-  res.render('pages/index');
-});
-
-// about page
-app.get('/about', function(req, res) {
-  res.render('pages/about');
-});
-
-app.get('/general', function(req,res){
-  res.render('pages/algebra_calculator');
-});
-
-app.get('/coord', function(req,res){
-  res.render('pages/coordinate');
-});
-
-app.get('/manage', function(req,res){
-  res.render('pages/data_management');
-});
-
-app.get('/measurement', function(req,res){
-  res.render('pages/measurement');
-});
-
-app.get('/money', function(req,res){
-  res.render('pages/money');
-});
-
-app.get('/space', function(req,res){
-  res.render('pages/space');
-});
-
-app.get('/time', function(req,res){
-  res.render('pages/time');
-});
-
-app.listen(8080);
-console.log('Server is listening on port 8080');
+const pageRouter = new PageRouter();
+pageRouter.startServer(8080);
