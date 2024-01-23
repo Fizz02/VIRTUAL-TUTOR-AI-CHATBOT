@@ -79,6 +79,7 @@ function convertNumber() {
 
 class NumberComparator {
     compareNumbers(num1, num2) {
+        
         if (num1 === num2) {
             return `${num1} = ${num2}`;
         } else if (num1 < num2) {
@@ -91,8 +92,8 @@ class NumberComparator {
 function compareNumbers() {
     const num1 = parseFloat(document.getElementById('input1').value);
     const num2 = parseFloat(document.getElementById('input2').value);
-    if (isNaN(num1) || isNaN(num2)) {
-        document.getElementById('resultcmp').innerText = 'Please enter valid numbers.';
+    if (isNaN(num1) || isNaN(num2) || num1 < 0 || num1 > 100 || num2 < 0 || num2 > 100) {
+        document.getElementById('resultcmp').innerText = 'Sila masukkan nombor yang sah antara 0 dan 100.';
         return;
     }
     const comparisonResult = numberComparator.compareNumbers(num1, num2);
