@@ -100,8 +100,8 @@ class NumberComparator {
 function compareNumbers() {
     const num1 = parseFloat(document.getElementById('input1').value);
     const num2 = parseFloat(document.getElementById('input2').value);
-    if (isNaN(num1) || isNaN(num2)) {
-        document.getElementById('resultcmp').innerText = 'Please enter valid numbers.';
+    if (isNaN(num1) || isNaN(num2) || num1 < 0 || num1 > 10000 || num2 < 0 || num2 > 10000) {
+        document.getElementById('resultcmp').innerText = 'Sila masukkan nombor yang sah antara 0 dan 10000.';
         return;
     }
     const comparisonResult = numberComparator.compareNumbers(num1, num2);
@@ -110,8 +110,8 @@ function compareNumbers() {
 function roundNumber() {
     const number = parseInt(document.getElementById('inputNumber').value);
     const roundingOption = parseInt(document.getElementById('roundingOption').value);
-    if (isNaN(number)) {
-        document.getElementById('resultr').innerText = 'Please enter a valid number.';
+    if (isNaN(number) || number < 0 || number > 10000) {
+        document.getElementById('resultr').innerText = 'Sila masukkan nombor yang sah antara 0 dan 10000.';
         return;
     }
     const roundedNumber = Math.round(number / roundingOption) * roundingOption;
