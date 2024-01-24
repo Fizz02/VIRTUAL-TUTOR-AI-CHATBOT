@@ -6,6 +6,8 @@ class PageRouter {
     app.set('view engine', 'ejs');
     app.set('views', path.join(__dirname, 'views'));
     app.use('/assets', express.static('assets'));
+    app.use('/controllers', express.static('controllers'));
+    app.use('/models', express.static('models'));
     this.setupRoutes();
   }
 
