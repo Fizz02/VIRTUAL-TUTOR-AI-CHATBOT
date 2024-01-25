@@ -15,7 +15,12 @@ function displayError(message) {
 }
 
 function handleResult(result) {
-  document.getElementById("resultcmp").innerText = result;
+  try {
+    // Perform synchronous operations here
+    document.getElementById("resultcmp").innerText = result;
+  } catch (error) {
+    document.getElementById("resultcmp").innerText = "Error in handleResult:" +  error;
+  }
 }
 
 function compareNumbers(num1, num2, maxRange, errorMessage) {
