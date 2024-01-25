@@ -5,36 +5,48 @@ class Calculator {
 
   addToDisplay(value) {
     this.displayValue += value;
-    document.getElementById("display").value = this.displayValue;
+    this.updateDisplay();
   }
 
   clearDisplay() {
     this.displayValue = "";
-    document.getElementById("display").value = this.displayValue;
+    this.updateDisplay();
   }
 
   deleteChar() {
     this.displayValue = this.displayValue.slice(0, -1);
-    document.getElementById("display").value = this.displayValue;
+    this.updateDisplay();
   }
+
+  handleError(message) {
+    this.displayValue = message;
+    this.updateDisplay();
+  }
+
+  handleCalculationResult(result) {
+    const displayElement = document.getElementById("display");
+    if (
+      !isNaN(result) &&
+      result >= 0 &&
+      result <= 100 &&
+      /^[0-9+\-*/. ]+$/.test(this.displayValue)
+    ) {
+      this.displayValue = result;
+      displayElement.value = this.displayValue;
+    } else {
+      this.handleError("Result beyond limit.");
+    }
+  }
+
   calculate1() {
     try {
       const result = eval(this.displayValue);
-      if (
-        !isNaN(result) &&
-        result >= 0 &&
-        result <= 100 &&
-        /^[0-9+\-*/. ]+$/.test(this.displayValue)
-      ) {
-        this.displayValue = result;
-        document.getElementById("display").value = this.displayValue;
-      } else {
-        throw new Error("Result beyond limit.");
-      }
+      this.handleCalculationResult(result);
     } catch (error) {
-      document.getElementById("display").value = "Result beyond 0-100";
+      this.handleError("Error in calculation: " + error.message);
     }
   }
+
   calculate2() {
     try {
       const sanitizedValue = this.displayValue.replace(/[^0-9+\-*/(). ]/g, "");
@@ -44,115 +56,50 @@ class Calculator {
 
       const result = this.evaluateExpression(sanitizedValue);
 
-      if (
-        typeof result === "object" &&
-        "quotient" in result &&
-        "remainder" in result
-      ) {
-        const { quotient, remainder } = result;
-        if (
-          !isNaN(quotient) &&
-          quotient >= 0 &&
-          quotient <= 1000 &&
-          !isNaN(remainder) &&
-          remainder >= 0 &&
-          remainder <= 1000
-        ) {
-          this.displayValue = `${quotient} remainder ${remainder}`;
-          document.getElementById("display").value = this.displayValue;
-        } else {
-          throw new Error("Result beyond 0-1000");
-        }
-      } else if (!isNaN(result) && result >= 0 && result <= 1000) {
-        this.displayValue = result;
-        document.getElementById("display").value = this.displayValue;
-      } else {
-        throw new Error("Result beyond 0-1000");
-      }
+      this.handleCalculationResult(result);
     } catch (error) {
-      document.getElementById("display").value = error.message;
+      this.handleError("Error in calculation: " + error.message);
     }
   }
+
   calculate3() {
     try {
       const sanitizedValue = this.displayValue.replace(/[^0-9+\-*/(). ]/g, "");
       const result = this.evaluateExpression(sanitizedValue);
 
-      if (
-        typeof result === "object" &&
-        "quotient" in result &&
-        "remainder" in result
-      ) {
-        const { quotient, remainder } = result;
-        if (
-          !isNaN(quotient) &&
-          quotient >= 0 &&
-          quotient <= 10000 &&
-          !isNaN(remainder) &&
-          remainder >= 0 &&
-          remainder <= 10000
-        ) {
-          this.displayValue = `${quotient} remainder ${remainder}`;
-          document.getElementById("display").value = this.displayValue;
-        } else {
-          throw new Error("result beyond limit.");
-        }
-      } else if (!isNaN(result) && result >= 0 && result <= 10000) {
-        this.displayValue = result;
-        document.getElementById("display").value = this.displayValue;
-      } else {
-        throw new Error("result beyond limit.");
-      }
+      this.handleCalculationResult(result);
     } catch (error) {
-      document.getElementById("display").value = "Result beyond 0-10000";
+      this.handleError("Error in calculation: " + error.message);
     }
   }
 
   evaluateExpression(expression) {
-    const operators = new Set(["+", "-", "*", "/", "%"]);
-    const stack = [];
-    const postfix = this.infixToPostfix(expression);
+    if (!operators.has(token)) {
+      stack.push(parseFloat(token));
+    } else {
+      const operand2 = stack.pop();
+      const operand1 = stack.pop();
 
-    for (const token of postfix) {
-      if (!operators.has(token)) {
-        stack.push(parseFloat(token));
-      } else {
-        const operand2 = stack.pop();
-        const operand1 = stack.pop();
-
-        switch (token) {
-          case "+":
-            stack.push(operand1 + operand2);
-            break;
-          case "-":
-            stack.push(operand1 - operand2);
-            break;
-          case "*":
-            stack.push(operand1 * operand2);
-            break;
-          case "/":
-            const quotient = Math.floor(operand1 / operand2);
-            const remainder = operand1 % operand2;
-            stack.push({ quotient, remainder });
-            break;
-          case "%":
-            stack.push(operand1 % operand2);
-            break;
-        }
+      switch (token) {
+        case "+":
+          stack.push(operand1 + operand2);
+          break;
+        case "-":
+          stack.push(operand1 - operand2);
+          break;
+        case "*":
+          stack.push(operand1 * operand2);
+          break;
+        case "/":
+          const quotient = Math.floor(operand1 / operand2);
+          const remainder = operand1 % operand2;
+          stack.push({ quotient, remainder });
+          break;
+        case "%":
+          stack.push(operand1 % operand2);
+          break;
       }
     }
-
-    const result = stack.pop();
-
-    if (
-      typeof result === "object" &&
-      "quotient" in result &&
-      "remainder" in result
-    ) {
-      return result;
-    }
-
-    return result;
   }
 
   infixToPostfix(infix) {
@@ -194,6 +141,11 @@ class Calculator {
     }
 
     return output;
+  }
+
+  updateDisplay() {
+    const displayElement = document.getElementById("display");
+    displayElement.value = this.displayValue;
   }
 }
 
