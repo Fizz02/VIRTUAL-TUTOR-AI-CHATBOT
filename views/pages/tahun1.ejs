@@ -23,7 +23,7 @@
                 <button class="col-span-3 p-3 bg-gray-300 rounded hover:bg-gray-400"
                     onclick="calculator.clearDisplay()">AC</button>
                 <button class="p-3 bg-gray-300 rounded hover:bg-gray-400" onclick="calculator.deleteChar()">DEL</button>
-                <button id="b7" class="p-3 bg-gray-100 rounded hover:bg-gray-200"
+                <button class="p-3 bg-gray-100 rounded hover:bg-gray-200"
                     onclick="calculator.addToDisplay('7')">7</button>
                 <button class="p-3 bg-gray-100 rounded hover:bg-gray-200"
                     onclick="calculator.addToDisplay('8')">8</button>
@@ -46,7 +46,7 @@
                 <button class="p-3 bg-gray-100 rounded hover:bg-gray-200"
                     onclick="calculator.addToDisplay('3')">3</button>
                 <button class="p-3 bg-yellow-300 rounded hover:bg-yellow-400"
-                    onclick="calculator.calculate()">=</button>
+                    onclick="calculator.calculate1()">=</button>
                 <button class="p-3 bg-gray-100 rounded hover:bg-gray-200"
                     onclick="calculator.addToDisplay('0')">0</button>
                 <button class="p-3 bg-gray-100 rounded hover:bg-gray-200"
@@ -60,7 +60,7 @@
             <input type="number" id="numberInput" class="p-2 mb-4 w-80"
                 placeholder="Enter a number between 0 and 100">
             <button class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                onclick="convertNumber()">Convert</button>
+                onclick="convertNumber1()">Convert</button>
             <p id="result" class="mt-4 text-xl font-bold"></p>
         </div>
         <div class="bg-opacity-70 bg-white p-6 rounded shadow-lg">
@@ -68,17 +68,20 @@
             <input type="number" id="input1" class="p-2 mb-4" placeholder="Enter first number">
             <input type="number" id="input2" class="p-2 mb-4" placeholder="Enter second number">
             <button class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                onclick="compareNumbers()">Compare</button>
+                onclick="compareNumbers1()">Compare</button>
             <p id="resultcmp" class="mt-4 text-xl font-bold"></p>
         </div>
         <div class="bg-opacity-70 bg-white p-6 rounded shadow-lg">
             <h1 class="text-2xl mb-4">Bundar Kepada Puluh Terdekat</h1>
             <input type="number" id="inputNumber" class="p-2 mb-4" placeholder="Enter a number">
-            <button class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600" onclick="roundNumber()">Round</button>
+            <button class="p-2 bg-blue-500 text-white rounded hover:bg-blue-600" onclick="roundNumber1()">Round</button>
             <p id="resultr" class="mt-4 text-xl font-bold"></p>
         </div>
     </div>
-    <script src="../../controllers/tahun1.js"></script>
+    <script src="/modules/calculator.js"></script>
+    <script src="/modules/roundNumber.js"></script>
+    <script src="/modules/numberConverter.js"></script>
+    <script src="/modules/numberComparator.js"></script>
 </main>
 
 <footer>
