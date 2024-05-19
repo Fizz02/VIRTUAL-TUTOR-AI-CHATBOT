@@ -1,7 +1,7 @@
-# CSC577 - PENDING
-# README for CSC577
+# CSC649 PROJECT
+# README for CSC649
 
-This is the README file for the CSC577 project.
+This is the README file for the CSC649 project.
 
 ## Running the Program
 
